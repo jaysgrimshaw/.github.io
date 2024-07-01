@@ -1,16 +1,109 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Test Site!</title>
+<title>Reddit Reader!</title>
 </head>
+
 
 <body>
 
-<h1>Testing...</h1>
-<p>-Jay</p>
+<h2>Reddit reader using only HTML and JavaScript.</h2>
+<p>I've made this to read text posts on my Kindle 3 after Reddit killed i.reddit.com</p>
+<p>Let me know what other devices this works well on!</p>
+
+<form>
+	<label for="subInput">Subreddit:</label>
+	<input type="text" id="subInput" name="subInput">
+	<br><br>
+	<label for="searchInput">Search Term(s):</label>
+	<input type="text" id="searchInput" name="searchInput">
+	<input type="button" value="Submit">
+</form>
+
+<h2>Posts in r/</h2>
+
+<p id="subPostTitlesParagraph"></p>
+
+<script type="text/javascript">
+	
+	const subInput = document.querySelector('#subInput');
+	const searchInput = document.querySelector('#searchInput');
+	const subSubmit_button = document.querySelector('input[type="button"]');
+	
+	subSubmit_button.addEventListener('click', () => {
+		console.log('BUTTON CLICKED');
+		let subPostTitlesString = ""; //this is gonna be set to "subPostTitlesParagraph" later. is this okay to define it here?
+		document.getElementById("subPostTitlesParagraph").innerHTML = subPostTitlesString; //go ahead and empty the page when you start again? so maybe if you get bad inputs it leaves it blank instead of leaving the last results? //or if i've fucked it up lol, that's just as likely
+		
+		let searchInputString = searchInput.value;
+		let subInputString = subInput.value;
+		
+		console.log('CONTENTS OF: searchInputString:', searchInputString);
+		if (searchInputString != ""){		//if there is a search term
+			console.log('SEARCH TERM GIVEN');
+			
+			apiUrl = "https://old.reddit.com/r/" + subInputString + "/search.json?q=" + searchInputString + "&restrict_sr=on&include_over_18=on";
+			fetch(apiUrl).then(response => {
+				console.log('RESPONSE: ', response);
+				return response.json();
+			}) //fetch api
+			.then(data => {
+				console.log('DATA: ', data);
+				
+				jsonData = data.data;
+				jsonDataChildren = jsonData.children;
+				for (let i in jsonDataChildren) {
+					jsonDataChild = jsonDataChildren[i];
+					jsonDataChildData = jsonDataChild.data;
+					jsonDataChildDataTitle = jsonDataChildData.title;
+					postTitle = jsonDataChildDataTitle;
+					
+					subPostTitlesString += postTitle + "<br><br>";
+				} //for i in jsonDataChildren
+				
+				document.getElementById("subPostTitlesParagraph").innerHTML = subPostTitlesString;
+				
+			}) //then data =>
+			.catch(error => {		//if api fetch doesn't work
+				console.error('ERROR: ', error);
+			}); //catch error
+			
+		} //if searchInputString //if there was a search term
+		else if (searchInputString == "") { //if they don't give a search term	//why is it common practice to put spaces in between all the () and {}? does that actually matter?
+			console.log('NO SEARCH INPUT GIVEN');
+			apiUrl = "https://old.reddit.com/r/" + subInputString + "/.json?include_over_18=on";
+			fetch(apiUrl).then(response => {
+				console.log('RESPONSE: ', response);
+				return response.json();
+			}) //fetch api url
+			.then(data => { //work with ur data here:
+				console.log('DATA: ', data);
+				
+				jsonData = data.data;
+				jsonDataChildren = jsonData.children;
+				for (let i in jsonDataChildren) {
+					jsonDataChild = jsonDataChildren[i];
+					jsonDataChildData = jsonDataChild.data;
+					jsonDataChildDataTitle = jsonDataChildData.title;
+					postTitle = jsonDataChildDataTitle;
+					
+					subPostTitlesString += postTitle + "<br><br>";
+				} //for i in jsonDataChildren
+				
+				document.getElementById("subPostTitlesParagraph").innerHTML = subPostTitlesString;
+				
+			}) //working with the api response data
+			.catch(error => {
+				console.error('ERROR: ', error);				
+			}); //catch error
+			
+		} //elif
+				
+	}); //addEventListener
+	
+	
+</script>
+
 
 </body>
-
-
-
 </html>
