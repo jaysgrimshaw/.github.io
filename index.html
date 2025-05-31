@@ -2,25 +2,133 @@
 <html>
 <head>
 <title>Test Site</title>
+
+<style>
+day1_old {
+	height:50%;
+	width: auto;
+}
+</style>
 </head>
 
 
 <body>
 
-<h1>Currently deployed from the wx branch</h1>
+<h1>*Currently deployed from the wx branch*</h1>
 
-<p> Valid until 8am EST:</p>
-<img src="https://www.spc.noaa.gov/products/outlook/day1otlk_0100.gif"/>
+<button id="radar" onclick="showRadar();">Show current radar</button>
+
+<br>
+<br>
+
+<!--intellicast -->
+<img id="intellicast_us" src="https://s.w-x.co/staticmaps/wu/wxtype/none/usa/animate.png"/>
+<img id="intellicast_day" src="https://s.w-x.co/staticmaps/wu/wxtype/county_loc/day/animate.png"/>
+
+
+<h3>SPC outlooks: </h3>
+<!--these buttons will all display on the same line-->
+<button id="categorical" onclick="showCat();">Categorical</button>
+<button id="tornado" onclick="showTor();">Tornado</button>
+<button id="wind" onclick="showWind();">Wind</button>
+<button id="hail" onclick="showHail();">Hail</button>
+
+<br>
+<br>
+
+<button onclick="showOldDay1();">Show Day 1 valid until 8am EST</button>
+
+<br>
+<br>
+
+<img id="day1_old" src="https://www.spc.noaa.gov/products/outlook/day1otlk_0100.gif"/>
+
 <p>Day 1 outlook: </p>
-<img src="https://www.spc.noaa.gov/products/outlook/day1otlk.gif"/>
-<img src="https://s.w-x.co/staticmaps/wu/wxtype/none/usa/animate.png"/>
-<img src="https://s.w-x.co/staticmaps/wu/wxtype/county_loc/day/animate.png"/>
+<img id="day1" src="https://www.spc.noaa.gov/products/outlook/day1otlk.gif"/>
+
 <p>Day 2 outlook: </p>
-<img src="https://www.spc.noaa.gov/products/outlook/day2otlk.gif"/>
+<img id="day2" src="https://www.spc.noaa.gov/products/outlook/day2otlk.gif"/>
+
 <p>Day 3 outlook: </p>
-<img src="https://www.spc.noaa.gov/products/outlook/day3otlk.gif"/>
+<img id="day3" src="https://www.spc.noaa.gov/products/outlook/day3otlk.gif"/>
+
 <p>Days 4-8 probabilities: </p>
-<img src="https://www.spc.noaa.gov/products/exper/day4-8/day48prob.gif"/>
+<img id="day4-8" src="https://www.spc.noaa.gov/products/exper/day4-8/day48prob.gif"/>
 	
 </body>
+
+<script>
+
+document.getElementById("intellicast_us").style.display = 'none';
+document.getElementById("intellicast_day").style.display = 'none';
+var displayingRadar = false;
+function showRadar()
+{
+
+if (displayingRadar == false){
+	document.getElementById("intellicast_us").style.display = '';
+	document.getElementById("intellicast_day").style.display = '';
+	displayingRadar = true; 
+}
+else {
+	document.getElementById("intellicast_us").style.display = 'none';
+	document.getElementById("intellicast_day").style.display = 'none';
+	displayingRadar = false
+}
+ 
+}
+
+document.getElementById("day1_old").style.display = 'none';
+function showOldDay1()
+{
+var img = document.getElementById("day1_old");
+if (img.style.display == 'none') {
+	img.style.display = ''; }
+else { 
+	img.style.display = 'none'; }
+}
+
+function showCat()
+{
+
+var img = document.getElementById("day1_old");
+img.src = "https://www.spc.noaa.gov/products/outlook/day1otlk_0100.gif";
+var img = document.getElementById("day1");
+img.src="https://www.spc.noaa.gov/products/outlook/day1otlk.gif";
+var img = document.getElementById("day2");
+img.src="https://www.spc.noaa.gov/products/outlook/day2otlk.gif";
+}
+
+function showTor()
+{
+var img = document.getElementById("day1_old");
+img.src="https://www.spc.noaa.gov/products/outlook/day1probotlk_0100_torn.gif";
+var img = document.getElementById("day1");
+img.src="https://www.spc.noaa.gov/products/outlook/day1probotlk_torn.gif";
+var img = document.getElementById("day2");
+img.src="https://www.spc.noaa.gov/products/outlook/day2probotlk_torn.gif";
+}
+
+function showWind()
+{
+var img = document.getElementById("day1_old");
+img.src="https://www.spc.noaa.gov/products/outlook/day1probotlk_0100_wind.gif";
+var img = document.getElementById("day1");
+img.src="https://www.spc.noaa.gov/products/outlook/day1probotlk_wind.gif";
+var img = document.getElementById("day2");
+img.src="https://www.spc.noaa.gov/products/outlook/day2probotlk_wind.gif";
+}
+
+function showHail()
+{
+var img = document.getElementById("day1_old");
+img.src="https://www.spc.noaa.gov/products/outlook/day1probotlk_0100_hail.gif";
+var img = document.getElementById("day1");
+img.src="https://www.spc.noaa.gov/products/outlook/day1probotlk_hail.gif";
+var img = document.getElementById("day2");
+img.src="https://www.spc.noaa.gov/products/outlook/day2probotlk_hail.gif";
+}
+
+</script>
+
 </html>
