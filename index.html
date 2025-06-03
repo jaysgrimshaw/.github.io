@@ -4,10 +4,28 @@
 <title>Test Site</title>
 
 <style>
-img { /*this will auto size every image to the full width of the page*/
-	height:100%;
-	width:100%;
+/*img { /*this will affect every image in the page
+	height: auto;
+	width: 1500px;	use max-width?*/
 }
+
+*img {
+	float: left;
+	width: 100px;
+	height: auto;
+	padding: 5px;
+}
+
+.column {
+
+	float:left;
+	width: 30.00%;
+	padding: 5px;
+
+}
+
+
+
 </style>
 </head>
 
@@ -43,13 +61,18 @@ img { /*this will auto size every image to the full width of the page*/
 
 <img id="day1_old" src="https://www.spc.noaa.gov/products/outlook/day1otlk_0100.gif"/>
 
-<p>Day 1 outlook: </p>
+<br>
+<br>
+
+<span class="column">Day 1 outlook: </span>
+<span class="column">Day 2 outlook: </span>
+<span class="column">Day 3 outlook: </span>
+
+<br>
+<br>
+
 <img id="day1" src="https://www.spc.noaa.gov/products/outlook/day1otlk.gif"/>
-
-<p>Day 2 outlook: </p>
 <img id="day2" src="https://www.spc.noaa.gov/products/outlook/day2otlk.gif"/>
-
-<p>Day 3 outlook: </p>
 <img id="day3" src="https://www.spc.noaa.gov/products/outlook/day3otlk.gif"/>
 
 <p>Days 4-8 probabilities: </p>
