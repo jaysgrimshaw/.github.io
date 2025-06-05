@@ -3,10 +3,14 @@
 <head>
 <title>Test Site</title>
 
+<!-- To do list:
+-make cookies to keep track of last used radar region
+-->
+
 <style>
 img { 
 	height:auto;
-	width:225px;
+	width:max-width;
 }
 </style>
 </head>
@@ -14,16 +18,63 @@ img {
 
 <body>
 
-<h1>*Currently deployed from the wx branch*</h1>
+<h3>Storm Prediction Center overview for today:</h3>
 
-<button id="radar" onclick="showRadar();">Show current radar</button>
+<img src="https://www.spc.noaa.gov/products/activity_loop.gif"/>
+
+<br>
+<br>
+
+<button id="radar" onclick="showRadar();">Show/Hide regional radar (Intellicast)</button>
+
+<select id="radarSelect" value="day" onchange="selectRadar()">
+
+	<option value="usa">Full United States</option>
+	<option value="bfl">CA - Bakersfield</option>
+	<option value="bgm">NY - Binghamton</option>
+	<option value="bis">ND - Bismarck</option>
+	<option value="bml">NH - Berlin</option>
+	<option value="bro">TX - Brownsville</option>
+	<option value="bwg">KY - Bowling Green</option>
+	<option value="cad">MI - Cadillac</option>
+	<option value="clt">NC - Charlotte</option>
+	<option value="csg">GA - Columbus</option>
+	<option value="day" selected>OH - Dayton</option>
+	<option value="den">CO - Denver</option>
+	<option value="dsm">IA - Des Moines</option>
+	<option value="eyw">FL - Key West</option>
+	<option value="fcx">VA - Roanoke</option>
+	<option value="hfd">CT - Hartford</option>
+	<option value="jef">MO - Jefferson City</option>
+	<option value="law">OK - Lawton</option>
+	<option value="lbf">NE - North Platte</option>
+	<option value="lit">AR - Little Rock</option>
+	<option value="lwt">MT - Lewistown</option>
+	<option value="msy">LA - New Orleans</option>
+	<option value="myl">ID - McCall</option>
+	<option value="pie">FL - Saint Petersburg</option>
+	<option value="pir">SD - Pierre</option>
+	<option value="prc">AZ - Prescott</option>
+	<option value="pvu">UT - Provo</option>
+	<option value="rdm">OR - Redmond</option>
+	<option value="riw">WY - Riverton</option>
+	<option value="rno">NV - Reno</option>
+	<option value="row">NM - Roswell</option>
+	<option value="sat">TX - San Antonio</option>
+	<option value="shd">VA - Staunton</option>
+	<option value="sln">KS - Salina</option>
+	<option value="spi">IL - Springfield</option>
+	<option value="stc">MN - Saint Cloud</option>
+	<option value="tiw">WA - Tacoma</option>
+	<option value="tvr">MS - Vicksburg</option>
+</select>
 
 <br>
 <br>
 
 <!--intellicast -->
-<img id="intellicast_us" src="https://s.w-x.co/staticmaps/wu/wxtype/none/usa/animate.png"/>
-<img id="intellicast_day" src="https://s.w-x.co/staticmaps/wu/wxtype/county_loc/day/animate.png"/>
+<!--<img id="intellicast_us" src="https://s.w-x.co/staticmaps/wu/wxtype/none/usa/animate.png"/>-->
+<img id="intellicast" src="https://s.w-x.co/staticmaps/wu/wxtype/county_loc/day/animate.png"/>
 
 
 <h3>SPC outlooks: </h3>
@@ -59,23 +110,32 @@ img {
 
 <script>
 
-document.getElementById("intellicast_us").style.display = 'none';
-document.getElementById("intellicast_day").style.display = 'none';
+//document.getElementById("intellicast_us").style.display = 'none';
+document.getElementById("intellicast").style.display = 'none';
 var displayingRadar = false;
 function showRadar()
 {
 
 if (displayingRadar == false){
-	document.getElementById("intellicast_us").style.display = '';
-	document.getElementById("intellicast_day").style.display = '';
+	//document.getElementById("intellicast_us").style.display = '';
+	document.getElementById("intellicast").style.display = '';
 	displayingRadar = true; 
 }
 else {
-	document.getElementById("intellicast_us").style.display = 'none';
-	document.getElementById("intellicast_day").style.display = 'none';
+	//document.getElementById("intellicast_us").style.display = 'none';
+	document.getElementById("intellicast").style.display = 'none';
 	displayingRadar = false
 }
  
+}
+
+function selectRadar() {
+var location = document.getElementById("radarSelect");
+var img  = document.getElementById("intellicast")
+if (location.value == "usa") {
+img.src = "https://s.w-x.co/staticmaps/wu/wxtype/none/usa/animate.png" }
+else {
+img.src = "https://s.w-x.co/staticmaps/wu/wxtype/county_loc/" + location.value + "/animate.png" }
 }
 
 document.getElementById("day1_old").style.display = 'none';
