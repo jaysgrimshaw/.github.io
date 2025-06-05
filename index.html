@@ -21,6 +21,11 @@ img {
 	height:auto;
 	width:225px;
 }
+
+iframe {
+	height:auto;
+	width:225px;
+}
 }
 
 </style>
@@ -92,8 +97,12 @@ img {
 <select id="videoSelect">
 </select>
 
-<iframe width="718" height="404" src="https://www.youtube.com/embed/fIqNH9hUT-s" title="🔴 LIVE: SEVERE WEATHER COVERAGE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<button onclick="clearVideo();">Remove embedded video</button>
 
+<br>
+<br>
+
+<span id="iframeSpan"></span>
 
 <h3>SPC outlooks: </h3>
 <!--these buttons will all display on the same line-->
@@ -154,6 +163,17 @@ if (location.value == "usa") {
 img.src = "https://s.w-x.co/staticmaps/wu/wxtype/none/usa/animate.png" }
 else {
 img.src = "https://s.w-x.co/staticmaps/wu/wxtype/county_loc/" + location.value + "/animate.png" }
+}
+
+function selectVideo() {
+
+var hallYallChannelId = "UCJHAT3Uvv-g3I8H3GhHWV7w";
+document.getElementById("iframeSpan").innerHTML = "<iframe src='https://www.youtube.com/embed/live_stream?channel=" + hallYallChannelId + "'></iframe>";
+
+}
+
+function clearVideo() {
+document.getElementById("iframeSpan").innerHTML = "";
 }
 
 document.getElementById("day1_old").style.display = 'none';
