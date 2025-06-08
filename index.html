@@ -15,6 +15,11 @@ img {
 	width:auto;
 }
 
+iframe {
+	width:700px;
+	aspect-ratio: 16/9 auto;
+}
+
 /*estimating the max width 290px for my flip phone */
 @media only screen and (max-device-width: 290px) { 
 img { 
@@ -23,8 +28,8 @@ img {
 }
 
 iframe {
-	height:auto;
 	width:225px;
+	aspect-ratio: 16/9 auto;
 }
 }
 
@@ -92,9 +97,15 @@ iframe {
 <!--<img id="intellicast_us" src="https://s.w-x.co/staticmaps/wu/wxtype/none/usa/animate.png"/>-->
 <a href="https://www.wunderground.com/maps/radar/current"><img id="intellicast" src="https://s.w-x.co/staticmaps/wu/wxtype/county_loc/day/animate.png"/></a>
 
-<button onclick="selectVideo();">Go to YouTube stream</button>
+<button onclick="selectVideo();">View YouTube stream</button>
 
 <select id="videoSelect">
+	<option value="UCBBsPuUY-8UwkSim4zLXp1w" selected>Y'allBot</option>
+	<option value="UCE5hG35cePuCb3MbxDlYRPQ">TRD Pro Storm Chasers</option>
+	<option value="UCQc7Ol2itgbnMXPjZmPdRRQ">Aaron Preslin (Cinci live cam)</option>
+	<option value="UCp2G_jHO53yj2NVjv8zbDmQ">Evan Fryberger</option>
+	<option value="UCJHAT3Uvv-g3I8H3GhHWV7w">Ryan Hall Y'all</option>
+
 </select>
 
 <button onclick="clearVideo();">Remove embedded video</button>
@@ -167,8 +178,8 @@ img.src = "https://s.w-x.co/staticmaps/wu/wxtype/county_loc/" + location.value +
 
 function selectVideo() {
 
-var hallYallChannelId = "UCJHAT3Uvv-g3I8H3GhHWV7w";
-document.getElementById("iframeSpan").innerHTML = "<iframe src='https://www.youtube.com/embed/live_stream?channel=" + hallYallChannelId + "'></iframe>";
+var channelid = document.getElementById("videoSelect").value;
+document.getElementById("iframeSpan").innerHTML = "<iframe src='https://www.youtube.com/embed/live_stream?channel=" + channelid + "' allow='picture-in-picture; fullscreen;'></iframe>";
 
 }
 
