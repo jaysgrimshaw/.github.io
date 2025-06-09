@@ -97,7 +97,17 @@ iframe {
 <!--<img id="intellicast_us" src="https://s.w-x.co/staticmaps/wu/wxtype/none/usa/animate.png"/>-->
 <a href="https://www.wunderground.com/maps/radar/current"><img id="intellicast" src="https://s.w-x.co/staticmaps/wu/wxtype/county_loc/day/animate.png"/></a>
 
-<iframe src="https://broadcast-weather.net/live_noaa_weather_n.html"></iframe>
+<br>
+<br>
+
+<span id="radioSpan">
+	<audio controls src="https://broadcastify.cdnstream1.com/39960"></audio>
+	&nbsp&nbsp
+	<button onclick="changeRadioStreams();">test</button>
+</span>
+
+<br>
+<br>
 
 <button onclick="selectVideo();">View YouTube stream</button>
 
@@ -181,6 +191,9 @@ img.src = "https://s.w-x.co/staticmaps/wu/wxtype/none/usa/animate.png" }
 else {
 img.src = "https://s.w-x.co/staticmaps/wu/wxtype/county_loc/" + location.value + "/animate.png" }
 }
+
+
+//<iframe src="https://broadcast-weather.net/live_noaa_weather_n.html"></iframe>
 
 function selectVideo() {
 
