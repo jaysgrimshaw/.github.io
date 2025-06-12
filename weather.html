@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Test Site</title>
+
+<!-- To do list:
+-make cookies to keep track of last used radar region
+-->
+<!-- use width of 255px for Cingular Flex 2 screen-->
+<style>
+
+/* for all other devices: */
+img {
+	height:auto;
+	width:auto;
+}
+
+iframe {
+	width:700px;
+	aspect-ratio: 16/9 auto;
+}
+
+/*estimating the max width 290px for my flip phone */
+@media only screen and (max-device-width: 290px) { 
+img { 
+	height:auto;
+	width:225px;
+}
+
+iframe {
+	width:225px;
+	aspect-ratio: 16/9 auto;
+}
+}
+
+</style>
+</head>
+
+
+<body>
+
+<h3>Storm Prediction Center overview for today:</h3>
+
+<a href="https://www.spc.noaa.gov"><img src="https://www.spc.noaa.gov/products/activity_loop.gif"/></a>
+
+<br>
+<br>
+
+<button id="radar" onclick="showRadar();">Show/Hide regional radar (Intellicast)</button>
+
+<select id="radarSelect" value="day" onchange="selectRadar()">
+
+	<option value="usa">Full United States</option>
+	<option value="bfl">CA - Bakersfield</option>
+	<option value="bgm">NY - Binghamton</option>
+	<option value="bis">ND - Bismarck</option>
+	<option value="bml">NH - Berlin</option>
+	<option value="bro">TX - Brownsville</option>
+	<option value="bwg">KY - Bowling Green</option>
+	<option value="cad">MI - Cadillac</option>
+	<option value="clt">NC - Charlotte</option>
+	<option value="csg">GA - Columbus</option>
+	<option value="day" selected>OH - Dayton</option>
+	<option value="den">CO - Denver</option>
+	<option value="dsm">IA - Des Moines</option>
+	<option value="eyw">FL - Key West</option>
+	<option value="fcx">VA - Roanoke</option>
+	<option value="hfd">CT - Hartford</option>
+	<option value="jef">MO - Jefferson City</option>
+	<option value="law">OK - Lawton</option>
+	<option value="lbf">NE - North Platte</option>
+	<option value="lit">AR - Little Rock</option>
+	<option value="lwt">MT - Lewistown</option>
+	<option value="msy">LA - New Orleans</option>
+	<option value="myl">ID - McCall</option>
+	<option value="pie">FL - Saint Petersburg</option>
+	<option value="pir">SD - Pierre</option>
+	<option value="prc">AZ - Prescott</option>
+	<option value="pvu">UT - Provo</option>
+	<option value="rdm">OR - Redmond</option>
+	<option value="riw">WY - Riverton</option>
+	<option value="rno">NV - Reno</option>
+	<option value="row">NM - Roswell</option>
+	<option value="sat">TX - San Antonio</option>
+	<option value="shd">VA - Staunton</option>
+	<option value="sln">KS - Salina</option>
+	<option value="spi">IL - Springfield</option>
+	<option value="stc">MN - Saint Cloud</option>
+	<option value="tiw">WA - Tacoma</option>
+	<option value="tvr">MS - Vicksburg</option>
+</select>
+
+<br>
+<br>
+
+<!--intellicast -->
+<!--<img id="intellicast_us" src="https://s.w-x.co/staticmaps/wu/wxtype/none/usa/animate.png"/>-->
+<a href="https://www.wunderground.com/maps/radar/current"><img id="intellicast" src="https://s.w-x.co/staticmaps/wu/wxtype/county_loc/day/animate.png"/></a>
+
+<br>
+<br>
+
+<span id="radioSpan">
+	<audio controls src="https://broadcastify.cdnstream1.com/39960"></audio>
+	&nbsp&nbsp
+	<button onclick="changeRadioStreams();">test</button>
+</span>
+
+<br>
+<br>
+
+<button onclick="selectVideo();">View YouTube stream</button>
+
+<select id="videoSelect">
+	<option value="UCBBsPuUY-8UwkSim4zLXp1w" selected>Y'allBot</option>
+	<option value="UCE5hG35cePuCb3MbxDlYRPQ">TRD Pro Storm Chasers</option>
+	<option value="UC9Im8smbq_uvNrmeJrW7Xjg">Weather Tracker Plus</option>
+	<option value="UCQc7Ol2itgbnMXPjZmPdRRQ">Aaron Preslin (Cinci live cam)</option>
+	<option value="UCp2G_jHO53yj2NVjv8zbDmQ">Evan Fryberger</option>
+	<option value="UCJHAT3Uvv-g3I8H3GhHWV7w">Ryan Hall Y'all</option>
+	<option value="UCvBVK2ymNzPLRJrgip2GeQQ">Max Velocity</option>
+	<option value="UChxsy558HhpaqnB1Hk6tHkw">Mr. Dibble</option>
+	<option value="UCyATI09Wvf9k-I1MmNILjEQ">TRG Tornado</option>
+	<option value="UCjHx6rlvmIEK8TmLnHghWLw">NWW116</option>
+</select>
+
+<button onclick="clearVideo();">Remove embedded video</button>
+
+<br>
+<br>
+
+<span id="iframeSpan"></span>
+
+<h3>SPC outlooks: </h3>
+<!--these buttons will all display on the same line-->
+<button id="categorical" onclick="showCat();">Categorical</button>
+<button id="tornado" onclick="showTor();">Tornado</button>
+<button id="wind" onclick="showWind();">Wind</button>
+<button id="hail" onclick="showHail();">Hail</button>
+
+<br>
+<br>
+
+<button onclick="showOldDay1();">Show Day 1 valid until 8am EST</button>
+
+<br>
+<br>
+
+<a href="https://www.spc.noaa.gov/products/outlook/day1otlk_0100.html"><img id="day1_old" src="https://www.spc.noaa.gov/products/outlook/day1otlk_0100.gif"/></a>
+
+<p>Day 1 outlook: </p>
+<a href="https://www.spc.noaa.gov/products/outlook/day1otlk.html"><img id="day1" src="https://www.spc.noaa.gov/products/outlook/day1otlk.gif"/></a>
+
+<p>Day 2 outlook: </p>
+<a href="https://www.spc.noaa.gov/products/outlook/day2otlk.html"><img id="day2" src="https://www.spc.noaa.gov/products/outlook/day2otlk.gif"/></a>
+
+<p>Day 3 outlook: </p>
+<a href="https://www.spc.noaa.gov/products/outlook/day3otlk.html"><img id="day3" src="https://www.spc.noaa.gov/products/outlook/day3otlk.gif"/></a>
+
+<p>Days 4-8 probabilities: </p>
+<a href="https://www.spc.noaa.gov/products/exper/day4-8"><img id="day4-8" src="https://www.spc.noaa.gov/products/exper/day4-8/day48prob.gif"/></a>
+	
+</body>
+
+<script>
+
+//document.getElementById("intellicast_us").style.display = 'none';
+document.getElementById("intellicast").style.display = 'none';
+var displayingRadar = false;
+function showRadar()
+{
+
+if (displayingRadar == false){
+	//document.getElementById("intellicast_us").style.display = '';
+	document.getElementById("intellicast").style.display = '';
+	displayingRadar = true; 
+}
+else {
+	//document.getElementById("intellicast_us").style.display = 'none';
+	document.getElementById("intellicast").style.display = 'none';
+	displayingRadar = false
+}
+ 
+}
+
+function selectRadar() {
+var location = document.getElementById("radarSelect");
+var img  = document.getElementById("intellicast")
+if (location.value == "usa") {
+img.src = "https://s.w-x.co/staticmaps/wu/wxtype/none/usa/animate.png" }
+else {
+img.src = "https://s.w-x.co/staticmaps/wu/wxtype/county_loc/" + location.value + "/animate.png" }
+}
+
+
+//<iframe src="https://broadcast-weather.net/live_noaa_weather_n.html"></iframe>
+
+function selectVideo() {
+
+var channelid = document.getElementById("videoSelect").value;
+document.getElementById("iframeSpan").innerHTML = "<iframe src='https://www.youtube.com/embed/live_stream?channel=" + channelid + "' allow='picture-in-picture; fullscreen;'></iframe>";
+
+}
+
+function clearVideo() {
+document.getElementById("iframeSpan").innerHTML = "";
+}
+
+document.getElementById("day1_old").style.display = 'none';
+function showOldDay1()
+{
+var img = document.getElementById("day1_old");
+if (img.style.display == 'none') {
+	img.style.display = ''; }
+else { 
+	img.style.display = 'none'; }
+}
+
+function showCat()
+{
+
+var img = document.getElementById("day1_old");
+img.src = "https://www.spc.noaa.gov/products/outlook/day1otlk_0100.gif";
+var img = document.getElementById("day1");
+img.src="https://www.spc.noaa.gov/products/outlook/day1otlk.gif";
+var img = document.getElementById("day2");
+img.src="https://www.spc.noaa.gov/products/outlook/day2otlk.gif";
+}
+
+function showTor()
+{
+var img = document.getElementById("day1_old");
+img.src="https://www.spc.noaa.gov/products/outlook/day1probotlk_0100_torn.gif";
+var img = document.getElementById("day1");
+img.src="https://www.spc.noaa.gov/products/outlook/day1probotlk_torn.gif";
+var img = document.getElementById("day2");
+img.src="https://www.spc.noaa.gov/products/outlook/day2probotlk_torn.gif";
+}
+
+function showWind()
+{
+var img = document.getElementById("day1_old");
+img.src="https://www.spc.noaa.gov/products/outlook/day1probotlk_0100_wind.gif";
+var img = document.getElementById("day1");
+img.src="https://www.spc.noaa.gov/products/outlook/day1probotlk_wind.gif";
+var img = document.getElementById("day2");
+img.src="https://www.spc.noaa.gov/products/outlook/day2probotlk_wind.gif";
+}
+
+function showHail()
+{
+var img = document.getElementById("day1_old");
+img.src="https://www.spc.noaa.gov/products/outlook/day1probotlk_0100_hail.gif";
+var img = document.getElementById("day1");
+img.src="https://www.spc.noaa.gov/products/outlook/day1probotlk_hail.gif";
+var img = document.getElementById("day2");
+img.src="https://www.spc.noaa.gov/products/outlook/day2probotlk_hail.gif";
+}
+
+</script>
+
+</html>
