@@ -7,13 +7,37 @@
 
 <body>
 
+<form onsubmit="gotoChannel();">
+	Twitch channel:
+	<input type="search" id="channelSearch">
+	<input type="submit">
+
+</form>
+
+<br>
+
 <!-- so i think the parent attribute in the url will only work with an actual domain, not the path to a local file; edit: that is correct-->
-<iframe
-    src="https://player.twitch.tv/?channel=pixiedustplaysgames&parent=jaysgrimshaw.github.io"
+<iframe id="twitchiframe"
+    src="https://player.twitch.tv/=parent=jaysgrimshaw.github.io"
     height="auto"
     width="auto"
     allowfullscreen>
 </iframe>
 
 </body>
+
+<script>
+
+const channelParam = window.location.search;
+
+document.getElementById("twitchiframe").src = "https://player.twitch.tv/" + channelParam + "&parent=jaysgrimshaw.github.io";
+
+function gotoChannel() {
+	var nextChannel = document.getElementById("channelSearch").value;
+	console.log(nextChannel);
+	window.location.replace("https://player.twitch.tv/?channel=" + nextChannel + "&parent=jaysgrimshaw.github.io");	
+}
+
+</script>
+
 </html>
