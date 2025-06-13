@@ -34,7 +34,8 @@ document.getElementById("twitchiframe").src = "https://player.twitch.tv/" + chan
 function gotoChannel() {
 	var nextChannel = document.getElementById("channelSearch").value;
 	console.log(nextChannel);
-	document.getElementById("twitchiframe").src = "https://player.twitch.tv/?channel=" + nextChannel + "&parent=jaysgrimshaw.github.io";
+	//document.getElementById("twitchiframe").src = "https://player.twitch.tv/?channel=" + nextChannel + "&parent=jaysgrimshaw.github.io";
+	window.location.href = "https://jaysgrimshaw.github.io/.github.io/twitch.html?channel=" + nextChannel;
 }
 
 </script>
