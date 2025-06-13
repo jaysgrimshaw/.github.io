@@ -7,12 +7,11 @@
 
 <body>
 
-<form onsubmit="gotoChannel();">
-	Twitch channel:
-	<input type="search" id="channelSearch">
-	<input type="submit">
+Twitch channel:
+<input type="search" id="channelSearch">
+<!--<input type="submit">-->
+<button onclick="gotoChannel();" id="channelSearchButton">Search</button>
 
-</form>
 
 <br>
 
@@ -35,7 +34,7 @@ document.getElementById("twitchiframe").src = "https://player.twitch.tv/" + chan
 function gotoChannel() {
 	var nextChannel = document.getElementById("channelSearch").value;
 	console.log(nextChannel);
-	window.location.replace("https://player.twitch.tv/?channel=" + nextChannel + "&parent=jaysgrimshaw.github.io");	
+	document.getElementById("twitchiframe").src = "https://player.twitch.tv/?channel=" + nextChannel + "&parent=jaysgrimshaw.github.io";
 }
 
 </script>
