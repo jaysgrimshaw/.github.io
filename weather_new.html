@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<head>
+<title>Weather Dashboard</title>
+<link rel="icon" type="image/x-icon" href="https://www.spc.noaa.gov/products/outlook/day1otlk.gif"> <!--the little icon next to the browser tab-->
+<style>
+
+/*set the div with all otlk images as the full width*/
+#outlook_img_row {
+	display: flex; 
+	flex-direction: row;
+	flex-wrap: nowrap;
+	gap: 5px;
+	width: 100%; /*use auto or 100%?*/
+}
+#outlook_img_row img {
+	/*this makes the images auto resize to fit the width*/
+	max-width: 100%; 
+}
+
+</style>
+</head>
+<body>
+
+<h3 style="text-align: center;">SPC Outlooks:</h3>
+<!--Header with the day1-3 outlooks-->	<!--maybe add the day4 if the screen is wide enough-->
+<div id="outlook_img_row">
+<a><img id="day1" onclick="changeImg();" src="https://www.spc.noaa.gov/products/outlook/day1otlk.gif"/></a>
+<a><img id="day2" onclick="changeImg();" src="https://www.spc.noaa.gov/products/outlook/day2otlk.gif"/></a>
+<a><img id="day3" onclick="changeImg();" src="https://www.spc.noaa.gov/products/outlook/day3otlk.gif"/></a>
+</div>	<!--not having the images in an <a> breaks the sizing, idk why-->
+</body>
+</html>
