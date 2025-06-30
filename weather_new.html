@@ -4,7 +4,16 @@
 <link rel="icon" type="image/x-icon" href="https://www.spc.noaa.gov/products/outlook/day1otlk.gif"> <!--the little icon next to the browser tab-->
 <style>
 
-/*set the div with all otlk images as the full width*/
+/*day 1,2,3 titles above the images*/
+#outlook_text_row {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	width: 100%;
+	justify-content: space-around; /*centers the text above each image*/
+}
+
+/*each otlk image equally spaced in a row*/
 #outlook_img_row {
 	display: flex; 
 	flex-direction: row;
@@ -22,6 +31,13 @@
 <body>
 
 <h3 style="text-align: center;">SPC Outlooks:</h3>
+
+<div id="outlook_text_row">
+<h5>Day 1</h5>
+<h5>Day 2</h5>
+<h5>Day 3</h5>
+</div>
+
 <!--Header with the day1-3 outlooks-->	<!--maybe add the day4 if the screen is wide enough-->
 <div id="outlook_img_row">
 <a><img id="day1" onclick="changeImg();" src="https://www.spc.noaa.gov/products/outlook/day1otlk.gif"/></a>
