@@ -23,7 +23,11 @@
 }
 #outlook_img_row img {
 	/*this makes the images auto resize to fit the width*/
-	max-width: 100%; 
+	width:100%;
+}
+
+/*estimating the max width 290px for flip phones*/
+@media only screen and (max-width: 290px) {
 }
 
 </style>
@@ -44,5 +48,10 @@
 <a><img id="day2" onclick="changeImg();" src="https://www.spc.noaa.gov/products/outlook/day2otlk.gif"/></a>
 <a><img id="day3" onclick="changeImg();" src="https://www.spc.noaa.gov/products/outlook/day3otlk.gif"/></a>
 </div>	<!--not having the images in an <a> breaks the sizing, idk why-->
+
+<p style="text-align: center;">Click on a day to view it</p>
+
+<img id="main_image" style="margin: auto; width: 95%;" onclick="enlargeImage();" src="https://www.spc.noaa.gov/products/activity_loop.gif">
+
 </body>
 </html>
