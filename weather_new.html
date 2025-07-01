@@ -4,15 +4,6 @@
 <link rel="icon" type="image/x-icon" href="https://www.spc.noaa.gov/products/outlook/day1otlk.gif"> <!--the little icon next to the browser tab-->
 <style>
 
-/*day 1,2,3 titles above the images*/
-#outlook_text_row {
-	display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
-	width: 100%;
-	justify-content: space-around; /*centers the text above each image*/
-}
-
 /*each otlk image equally spaced in a row*/
 #outlook_img_row {
 	display: flex; 
@@ -25,6 +16,10 @@
 	/*this makes the images auto resize to fit the width*/
 	width:100%;
 }
+#outlook_img_row h5 {
+	text-align: center;
+	margin: 0;
+}
 
 /*estimating the max width 290px for flip phones*/
 @media only screen and (max-width: 290px) {
@@ -36,22 +31,28 @@
 
 <h3 style="text-align: center;">SPC Outlooks:</h3>
 
-<div id="outlook_text_row">
-<h5>Day 1</h5>
-<h5>Day 2</h5>
-<h5>Day 3</h5>
-</div>
-
 <!--Header with the day1-3 outlooks-->	<!--maybe add the day4 if the screen is wide enough-->
 <div id="outlook_img_row">
-<a><img id="day1" onclick="changeImg();" src="https://www.spc.noaa.gov/products/outlook/day1otlk.gif"/></a>
-<a><img id="day2" onclick="changeImg();" src="https://www.spc.noaa.gov/products/outlook/day2otlk.gif"/></a>
-<a><img id="day3" onclick="changeImg();" src="https://www.spc.noaa.gov/products/outlook/day3otlk.gif"/></a>
+<div><h5>Day 1</h5><a><img id="day1" onclick="changeImg(this.src);" src="https://www.spc.noaa.gov/products/outlook/day1otlk.gif"/></a></div>
+<div><h5>Day 2</h5><a><img id="day2" onclick="changeImg(this.src);" src="https://www.spc.noaa.gov/products/outlook/day2otlk.gif"/></a></div>
+<div><h5>Day 3</h5><a><img id="day3" onclick="changeImg(this.src);" src="https://www.spc.noaa.gov/products/outlook/day3otlk.gif"/></a></div>
 </div>	<!--not having the images in an <a> breaks the sizing, idk why-->
 
-<p style="text-align: center;">Click on a day to view it</p>
+<p style="text-align: center; margin: 2px;">Click on a day to view it</p>
 
-<img id="main_image" style="margin: auto; width: 95%;" onclick="enlargeImage();" src="https://www.spc.noaa.gov/products/activity_loop.gif">
+<img id="main_image" style="margin: auto; width: 95%; display: block;" onclick="enlargeImage();" src="https://www.spc.noaa.gov/products/activity_loop.gif">
 
 </body>
+
+<script>
+
+function changeImg(newSrc) {
+
+console.log(newSrc);
+document.getElementById("main_image").src = newSrc;
+
+}
+
+</script>
+
 </html>
