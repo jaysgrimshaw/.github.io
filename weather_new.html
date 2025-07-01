@@ -4,6 +4,8 @@
 <link rel="icon" type="image/x-icon" href="https://www.spc.noaa.gov/products/outlook/day1otlk.gif"> <!--the little icon next to the browser tab-->
 <style>
 
+/*estimating the max width 290px for flip phones*/
+/*@media only screen and (max-width: 290px) {*/	/*hardcoding everything for now*/
 /*each otlk image equally spaced in a row*/
 #outlook_img_row {
 	display: flex; 
@@ -21,15 +23,19 @@
 	margin: 0;
 }
 
-/*estimating the max width 290px for flip phones*/
-@media only screen and (max-width: 290px) {
+#main_image {
+	margin: auto;
+	width: 255px;
+	display: block;
 }
+
+/*}*/ /*for the max-width 290px*/
 
 </style>
 </head>
 <body>
 
-<h3 style="text-align: center;">SPC Outlooks:</h3>
+<h3 style="text-align: center; margin: 5px;">SPC Outlooks:</h3>
 
 <!--Header with the day1-3 outlooks-->	<!--maybe add the day4 if the screen is wide enough-->
 <div id="outlook_img_row">
@@ -38,9 +44,20 @@
 <div><h5>Day 3</h5><a><img id="day3" onclick="changeImg(this.src);" src="https://www.spc.noaa.gov/products/outlook/day3otlk.gif"/></a></div>
 </div>	<!--not having the images in an <a> breaks the sizing, idk why-->
 
-<p style="text-align: center; margin: 2px;">Click on a day to view it</p>
+<br>
 
-<img id="main_image" style="margin: auto; width: 95%; display: block;" onclick="enlargeImage();" src="https://www.spc.noaa.gov/products/activity_loop.gif">
+<div id="button_wrapper" style="width: 50%; margin: auto; display: block;">
+
+<button>Categorical</button>
+<button>Tornado</button>
+<button>Wind</button>
+<button>Hail</button>
+
+</div>
+
+<br>
+
+<img id="main_image" onclick="enlargeImage();" src="https://www.spc.noaa.gov/products/activity_loop.gif">
 
 </body>
 
