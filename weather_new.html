@@ -23,7 +23,7 @@
 	margin: 0;
 }
 
-#main_image {
+#mainImg {
 	/*margin: auto;*/
 	width: 225px;
 	/*display: block;*/
@@ -40,33 +40,73 @@
 
 <!--Header with the day1-3 outlooks-->	<!--maybe add the day4 if the screen is wide enough-->
 <div id="outlook_img_row">
-<div><h5>Day 1</h5><a><img id="day1" onclick="changeImg(this.src);" src="https://www.spc.noaa.gov/products/outlook/day1otlk.gif"/></a></div>
-<div><h5>Day 2</h5><a><img id="day2" onclick="changeImg(this.src);" src="https://www.spc.noaa.gov/products/outlook/day2otlk.gif"/></a></div>
-<div><h5>Day 3</h5><a><img id="day3" onclick="changeImg(this.src);" src="https://www.spc.noaa.gov/products/outlook/day3otlk.gif"/></a></div>
+<div><h5>Day 1</h5><a><img id="day1" onclick="selectMainOutlook(this.src);" src="https://www.spc.noaa.gov/products/outlook/day1otlk.gif"/></a></div>
+<div><h5>Day 2</h5><a><img id="day2" onclick="selectMainOutlook(this.src);" src="https://www.spc.noaa.gov/products/outlook/day2otlk.gif"/></a></div>
+<div><h5>Day 3</h5><a><img id="day3" onclick="selectMainOutlook(this.src);" src="https://www.spc.noaa.gov/products/outlook/day3otlk.gif"/></a></div>
 </div>	<!--not having the images in an <a> breaks the sizing, idk why-->
 
-<div id="button_wrapper" style="display:flex; justify-content: center; align-items: center;">
+<div id="button_wrapper" style="display: flex; justify-content: center; align-items: center;">
 
-<button>Cat</button><button>Tor</button><button>Wind</button><button>Hail</button>
+<button onclick="changeMainImg(this.textContent);">Cat</button>
+<button>Tor</button>
+<button>Wind</button>
+<button>Hail</button>
+
 
 </div>
 
-<img id="main_image" onclick="enlargeImage();" src="https://www.spc.noaa.gov/products/activity_loop.gif">
+<div id="mainElementDiv">
+<img id="mainImg" src="https://www.spc.noaa.gov/products/activity_loop.gif">
+</div>
+
+<br>
+
+<div id="mainSelectWrapper" style="display: flex; justify-content: center; align-items: center;">
+<select id="mainSelect" onchange="changeMainImg(this.value);">
+
+	<option selected>Or, select an option to view</option>
+	<option value="overview">SPC overview</option>
+	<option value="days4-8">Days 4-8 outlook</option>
+	<option value="yt">YouTube WX streams</option>
+	<option value="radar">Regional radar</option>
+
+</select>
+</div>
 
 <br>
 <br>
-*deployed from branch weather for development
+*deployed from branch weather for testing
 
 </body>
 
 <script>
 
-function changeImg(newSrc) {
+var mainElementDiv = document.getElementById("mainElementDiv");
 
-console.log(newSrc);
-document.getElementById("main_image").src = newSrc;
+function selectMainOutlook(selectedSrc) {
+
+	console.log("function selectMainOutlook");
+	mainElementDiv.innerHTML = '<img id="mainImg" src="' + selectedSrc + '">';
 
 }
+
+function changeMainImg(selectedValue) 
+
+{
+	console.log(selectedValue);
+
+	if (selectedValue == "overview") {
+		mainElementDiv.innerHTML = '<img id="mainImg" src="https://www.spc.noaa.gov/products/activity_loop.gif">';
+	}
+	else if (selectedValue == "days4-8") {
+		mainElementDiv.innerHTML = '<img id="mainImg" src="https://www.spc.noaa.gov/products/exper/day4-8/day48prob.gif">';
+	}
+	else if (selectedValue == "yt") {
+		mainElementDiv.innerHTML = "<iframe src='https://www.youtube.com/embed/live_stream?channel=UCBBsPuUY-8UwkSim4zLXp1w' allow='picture-in-picture; fullscreen;'></iframe>";
+	}
+
+}
+//mainElementDiv.innerHTML = '';
 
 </script>
 
