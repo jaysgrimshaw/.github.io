@@ -44,6 +44,20 @@ body {
 	margin: 0 1px 0 1px;
 }
 
+#mainSelectWrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+/* make these two invisible at first, JS will show them later*/
+#selectYT {
+	display: none;
+}
+
+#selectRadar {
+	display: none;
+}
+
 /*}*/ /*for the max-width 290px*/
 
 </style>
@@ -72,7 +86,7 @@ body {
 <img id="mainImg" src="https://www.spc.noaa.gov/products/activity_loop.gif">
 </div>
 
-<div id="mainSelectWrapper" style="display: flex; justify-content: center; align-items: center;">
+<div id="mainSelectWrapper">
 <select id="mainSelect" onchange="changeMainImg(this.value);">
 
 	<option selected>View more</option>
@@ -81,6 +95,12 @@ body {
 	<option value="yt">YT streams</option>
 	<option value="radar">Local radar</option>
 
+</select>
+<select id="selectYT">
+	<option>YT</option>
+</select>
+<select id="selectRadar">
+	<option>radar</option>
 </select>
 </div>
 
@@ -106,19 +126,29 @@ function changeMainImg(selectedValue)
 {
 	console.log(selectedValue);
 
+	//check YT and radar first with their own else bc if they aren't true i need to hide the select for them
+	if (selectedValue == "yt") {
+		mainElementDiv.innerHTML = "<iframe src='https://www.youtube.com/embed/live_stream?channel=UCBBsPuUY-8UwkSim4zLXp1w' allow='picture-in-picture; fullscreen;'></iframe>";
+		document.getElementById("selectYT").style.display="block";
+	}
+	else {
+		document.getElementById("selectYT").style.display="none";
+	}
+	if (selectedValue == "radar") {
+		mainElementDiv.innerHTML = '<img id="mainImg" src="https://s.w-x.co/staticmaps/wu/wxtype/county_loc/day/animate.png">';
+		document.getElementById("selectRadar").style.display="block";
+	}
+
+	else {
+		document.getElementById("selectRadar").style.display="none";
+	}
+
 	if (selectedValue == "overview") {
 		mainElementDiv.innerHTML = '<img id="mainImg" src="https://www.spc.noaa.gov/products/activity_loop.gif">';
 	}
 	else if (selectedValue == "days4-8") {
 		mainElementDiv.innerHTML = '<img id="mainImg" src="https://www.spc.noaa.gov/products/exper/day4-8/day48prob.gif">';
 	}
-	else if (selectedValue == "yt") {
-		mainElementDiv.innerHTML = "<iframe src='https://www.youtube.com/embed/live_stream?channel=UCBBsPuUY-8UwkSim4zLXp1w' allow='picture-in-picture; fullscreen;'></iframe>";
-	}
-	else if (selectedValue == "radar") {
-		mainElementDiv.innerHTML = '<img id="mainImg" src="https://s.w-x.co/staticmaps/wu/wxtype/county_loc/day/animate.png">';
-	}
-
 }
 
 </script>
