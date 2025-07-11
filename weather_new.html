@@ -58,6 +58,11 @@ body {
 	display: none;
 }
 
+iframe {
+	width:225px;
+	aspect-ratio: 16/9 auto;
+}
+
 /*}*/ /*for the max-width 290px*/
 
 </style>
@@ -97,7 +102,7 @@ body {
 
 </select>
 
-<select id="selectYT">
+<select id="selectYT" onchange="selectYT(this.value);">
 	<option value="UCBBsPuUY-8UwkSim4zLXp1w" selected>Y'allBot</option>
 	<option value="UCE5hG35cePuCb3MbxDlYRPQ">TRD Pro Storm Chasers</option>
 	<option value="UC9Im8smbq_uvNrmeJrW7Xjg">Weather Tracker Plus</option>
@@ -201,7 +206,8 @@ function changeMainImg(selectedValue)
 	}
 }
 
-function selectVideo() {
+function selectYT(channelID) {
+	mainElementDiv.innerHTML = "<iframe src='https://www.youtube.com/embed/live_stream?channel=" + channelID + "' allow='picture-in-picture; fullscreen;'></iframe>";
 
 }
 
