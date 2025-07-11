@@ -73,17 +73,17 @@ iframe {
 
 <!--Header with the day1-3 outlooks-->	<!--maybe add the day4 if the screen is wide enough-->
 <div id="outlook_img_row">
-<div><h5>Day 1</h5><a><img id="day1" onclick="selectMainOutlook(this.src);" src="https://www.spc.noaa.gov/products/outlook/day1otlk.gif"/></a></div>
-<div><h5>Day 2</h5><a><img id="day2" onclick="selectMainOutlook(this.src);" src="https://www.spc.noaa.gov/products/outlook/day2otlk.gif"/></a></div>
+<div><h5>Day 1</h5><a><img id="day1" onclick="selectMainOutlook(this.src, this.id);" src="https://www.spc.noaa.gov/products/outlook/day1otlk.gif"/></a></div>
+<div><h5>Day 2</h5><a><img id="day2" onclick="selectMainOutlook(this.src, this.id);" src="https://www.spc.noaa.gov/products/outlook/day2otlk.gif"/></a></div>
 <div><h5>Day 3</h5><a><img id="day3" onclick="selectMainOutlook(this.src);" src="https://www.spc.noaa.gov/products/outlook/day3otlk.gif"/></a></div>
 </div>	<!--not having the images in an <a> breaks the sizing, idk why-->
 
 <div id="buttonWrapper" style="display: flex; justify-content: center; align-items: center;">
 
-<button onclick="changeMainImg(this.textContent);">Categorical</button>
-<button>Tornado</button>
-<button>Wind</button>
-<button>Hail</button>
+<button value="cat" onclick="changeProbabilities(this.value);">Categorical</button>
+<button value="torn" onclick="changeProbabilities(this.value);">Tornado</button>
+<button value="wind" onclick="changeProbabilities(this.value);">Wind</button>
+<button value="hail" onclick="changeProbabilities(this.value);">Hail</button>
 
 </div>
 
@@ -169,11 +169,35 @@ iframe {
 
 var mainElementDiv = document.getElementById("mainElementDiv");
 
-function selectMainOutlook(selectedSrc) {
+function selectMainOutlook(selectedSrc, selectedID) {
 
 	console.log("function selectMainOutlook");
-	mainElementDiv.innerHTML = '<img id="mainImg" src="' + selectedSrc + '">';
+	mainElementDiv.innerHTML = '<img id="mainImg" alt="' + selectedID + '" src="' + selectedSrc + '">';
+	console.log(document.getElementById("mainImg").alt);
+}
 
+function changeProbabilities(selection) {
+	console.log("changeProbabilities: selected " + selection);
+	day1 = document.getElementById("day1");
+	day2 = document.getElementById("day2");
+	//change the day1 and day2 outlooks at the top of the screen
+	if (selection == "cat") {
+		day1.src="https://www.spc.noaa.gov/products/outlook/day1otlk.gif";
+		day2.src="https://www.spc.noaa.gov/products/outlook/day2otlk.gif";	
+
+	}
+
+	else {
+		day1.src="https://www.spc.noaa.gov/products/outlook/day1probotlk_" + selection + ".gif";
+		day2.src="https://www.spc.noaa.gov/products/outlook/day2probotlk_" + selection + ".gif";
+	}
+
+	//if the main image is one of the outlooks, change that
+	otlk = document.getElementById("mainImg").alt;
+	if (["day1", "day2"].includes(otlk)) {
+		console.log("includes");
+		mainImg.src = document.getElementById(otlk).src;
+	}
 }
 
 function changeMainImg(selectedValue) 
