@@ -30,6 +30,10 @@
 	margin-top: 4px;
 }
 
+#buttonWrapper > button {
+	padding-inline: 2px;
+}
+
 /*}*/ /*for the max-width 290px*/
 
 </style>
@@ -45,12 +49,14 @@
 <div><h5>Day 3</h5><a><img id="day3" onclick="selectMainOutlook(this.src);" src="https://www.spc.noaa.gov/products/outlook/day3otlk.gif"/></a></div>
 </div>	<!--not having the images in an <a> breaks the sizing, idk why-->
 
-<div id="button_wrapper" style="display: flex; justify-content: center; align-items: center;">
+<div id="buttonWrapper" style="display: flex; justify-content: center; align-items: center;">
 
+<button>Overview</button>
 <button onclick="changeMainImg(this.textContent);">Cat</button>
 <button>Tor</button>
 <button>Wind</button>
 <button>Hail</button>
+<button>Days 4-8</button>
 
 
 </div>
@@ -73,13 +79,10 @@
 </select>
 </div>
 
-<<<<<<< HEAD
 <br>
 <br>
 *deployed from branch weather for testing
 
-=======
->>>>>>> cd13c95e827cb9ffd77b0cb82c1a562d5903e553
 </body>
 
 <script>
@@ -108,7 +111,7 @@ function changeMainImg(selectedValue)
 		mainElementDiv.innerHTML = "<iframe src='https://www.youtube.com/embed/live_stream?channel=UCBBsPuUY-8UwkSim4zLXp1w' allow='picture-in-picture; fullscreen;'></iframe>";
 	}
 	else if (selectedValue == "radar") {
-		mainElementDiv.innerHTML = '<img id="mainImg" src="
+		mainElementDiv.innerHTML = '<img id="mainImg" src="https://s.w-x.co/staticmaps/wu/wxtype/county_loc/day/animate.png">';
 	}
 
 }
