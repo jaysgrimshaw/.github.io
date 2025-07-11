@@ -48,6 +48,7 @@ body {
 	/*margin: auto;
 	display: block;*/
 	margin-top: 4px;
+	margin-bottom: 4px;
 	width: 225px;
 }
 
@@ -87,6 +88,31 @@ iframe {
 
 /*}*/ /*for the max-width 290px*/
 
+/*scaling it for regular smartphones*/
+@media (min-width: 320px) {
+
+#outlook_img_row {
+	width: 390px;
+}
+
+#outlook_img_row img {
+	width: 100;
+}
+
+#day4-8div {
+	display: block;
+}
+
+#mainImg {
+	width: 390px;
+}
+
+iframe {
+	width: 390px;
+}
+	
+}
+
 
 /*scaling it for 1080p displays:*/
 @media only screen and (min-width: 1000px) {
@@ -104,11 +130,11 @@ iframe {
 }
 
 #mainImg {
-	width: auto;
+	width: 582px;
 }
 
 iframe {
-	width: auto;
+	width: 582px;
 }
 
 }
@@ -146,7 +172,7 @@ iframe {
 <div id="mainSelectWrapper">
 <select id="mainSelect" onchange="changeMainImg(this.value);">
 
-	<option selected>View more</option>
+	<option value="viewmore" selected>View more</option>
 	<option value="overview">SPC overview</option>
 	<option value="oldDay1">*still needs done* Yesterday's otlk valid until 12Z</button>
 	<option value="days4-8">Day4-8 outlook</option>
@@ -227,6 +253,9 @@ function selectMainOutlook(selectedSrc, selectedID) {
 	console.log("function selectMainOutlook");
 	mainElementDiv.innerHTML = '<img id="mainImg" alt="' + selectedID + '" src="' + selectedSrc + '">';
 	console.log(document.getElementById("mainImg").alt);
+	document.getElementById("mainSelect").value="viewmore";
+	document.getElementById("selectYT").style.display="none";
+	document.getElementById("selectRadar").style.display="none";
 }
 
 function changeProbabilities(selection) {
