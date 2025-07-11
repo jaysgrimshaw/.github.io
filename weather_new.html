@@ -34,6 +34,10 @@ body {
 	margin: 0;
 }
 
+#day4-8div {
+	display: none;
+}
+
 #mainElementDiv {
 	display: flex;
 	justify-content: center;
@@ -83,6 +87,33 @@ iframe {
 
 /*}*/ /*for the max-width 290px*/
 
+
+/*scaling it for 1080p displays:*/
+@media only screen and (min-width: 1000px) {
+
+#outlook_img_row {
+	width: 700px;
+}
+
+#outlook_img_row img {
+	width: 100;
+}
+
+#day4-8div {
+	display: block;
+}
+
+#mainImg {
+	width: auto;
+}
+
+iframe {
+	width: auto;
+}
+
+}
+
+
 </style>
 </head>
 <body>
@@ -95,6 +126,7 @@ iframe {
 <div><h5>Day 1</h5><a><img id="day1" onclick="selectMainOutlook(this.src, this.id);" src="https://www.spc.noaa.gov/products/outlook/day1otlk.gif"/></a></div>
 <div><h5>Day 2</h5><a><img id="day2" onclick="selectMainOutlook(this.src, this.id);" src="https://www.spc.noaa.gov/products/outlook/day2otlk.gif"/></a></div>
 <div><h5>Day 3</h5><a><img id="day3" onclick="selectMainOutlook(this.src);" src="https://www.spc.noaa.gov/products/outlook/day3otlk.gif"/></a></div>
+<div id="day4-8div"><h5>Day 4-8</h5><a><img id="day4-8" src="https://www.spc.noaa.gov/products/exper/day4-8/day48prob.gif"/></a></div>
 </div>	<!--not having the images in an <a> breaks the sizing, idk why-->
 </div>
 
