@@ -12,13 +12,18 @@ body {
 	margin: 1px;
 }
 
+#outlook_img_row_wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
 
 #outlook_img_row {
 	display: flex; 
 	flex-direction: row;
 	flex-wrap: nowrap;
 	gap: 5px;
-	width: 100%; /*use auto or 100%?*/
+	width: 255px; /*use auto or 100% or 255px?*/
 }
 #outlook_img_row img {
 	/*this makes the images auto resize to fit the width*/
@@ -29,11 +34,17 @@ body {
 	margin: 0;
 }
 
+#mainElementDiv {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
 #mainImg {
-	/*margin: auto;*/
-	width: 225px;
-	/*display: block;*/
+	/*margin: auto;
+	display: block;*/
 	margin-top: 4px;
+	width: 225px;
 }
 
 #buttonWrapper > button {
@@ -79,11 +90,13 @@ iframe {
 <!--<h3 style="text-align: center; margin: 5px;">SPC Outlooks:</h3>-->
 
 <!--Header with the day1-3 outlooks-->	<!--maybe add the day4 if the screen is wide enough-->
+<div id="outlook_img_row_wrapper">
 <div id="outlook_img_row">
 <div><h5>Day 1</h5><a><img id="day1" onclick="selectMainOutlook(this.src, this.id);" src="https://www.spc.noaa.gov/products/outlook/day1otlk.gif"/></a></div>
 <div><h5>Day 2</h5><a><img id="day2" onclick="selectMainOutlook(this.src, this.id);" src="https://www.spc.noaa.gov/products/outlook/day2otlk.gif"/></a></div>
 <div><h5>Day 3</h5><a><img id="day3" onclick="selectMainOutlook(this.src);" src="https://www.spc.noaa.gov/products/outlook/day3otlk.gif"/></a></div>
 </div>	<!--not having the images in an <a> breaks the sizing, idk why-->
+</div>
 
 <div id="buttonWrapper" style="display: flex; justify-content: center; align-items: center;">
 
@@ -103,7 +116,7 @@ iframe {
 
 	<option selected>View more</option>
 	<option value="overview">SPC overview</option>
-	<option value="oldDay1">Yesterday's otlk valid until 12Z</button>
+	<option value="oldDay1">*still needs done* Yesterday's otlk valid until 12Z</button>
 	<option value="days4-8">Day4-8 outlook</option>
 	<option value="yt">YT streams</option>
 	<option value="radar">Local radar</option>
@@ -169,7 +182,7 @@ iframe {
 
 <br>
 <br>
-*deployed from branch weather for testing
+<p style="display: flex; justify-content: center; align-items: center;">*deployed from branch weather for testing</p>
 
 </body>
 
