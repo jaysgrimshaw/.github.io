@@ -7,6 +7,12 @@
 /*estimating the max width 290px for flip phones*/
 /*@media only screen and (max-width: 290px) {*/	/*hardcoding everything for now*/
 /*each otlk image equally spaced in a row*/
+
+body {
+	margin: 1px;
+}
+
+
 #outlook_img_row {
 	display: flex; 
 	flex-direction: row;
@@ -32,6 +38,10 @@
 
 #buttonWrapper > button {
 	padding-inline: 2px;
+	background: #000000;
+	color: #FFFFFF;
+	border: 0;
+	margin: 0 1px 0 1px;
 }
 
 /*}*/ /*for the max-width 290px*/
@@ -51,13 +61,10 @@
 
 <div id="buttonWrapper" style="display: flex; justify-content: center; align-items: center;">
 
-<button>Overview</button>
-<button onclick="changeMainImg(this.textContent);">Cat</button>
-<button>Tor</button>
+<button onclick="changeMainImg(this.textContent);">Categorical</button>
+<button>Tornado</button>
 <button>Wind</button>
 <button>Hail</button>
-<button>Days 4-8</button>
-
 
 </div>
 
@@ -65,16 +72,14 @@
 <img id="mainImg" src="https://www.spc.noaa.gov/products/activity_loop.gif">
 </div>
 
-<br>
-
 <div id="mainSelectWrapper" style="display: flex; justify-content: center; align-items: center;">
 <select id="mainSelect" onchange="changeMainImg(this.value);">
 
-	<option selected>Or, select an option to view</option>
+	<option selected>View more</option>
 	<option value="overview">SPC overview</option>
-	<option value="days4-8">Days 4-8 outlook</option>
-	<option value="yt">YouTube WX streams</option>
-	<option value="radar">Regional radar</option>
+	<option value="days4-8">Day4-8 outlook</option>
+	<option value="yt">YT streams</option>
+	<option value="radar">Local radar</option>
 
 </select>
 </div>
@@ -115,8 +120,6 @@ function changeMainImg(selectedValue)
 	}
 
 }
-//mainElementDiv.innerHTML = '';
 
 </script>
-
 </html>
