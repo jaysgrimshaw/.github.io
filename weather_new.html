@@ -96,12 +96,62 @@ body {
 	<option value="radar">Local radar</option>
 
 </select>
+
 <select id="selectYT">
-	<option>YT</option>
+	<option value="UCBBsPuUY-8UwkSim4zLXp1w" selected>Y'allBot</option>
+	<option value="UCE5hG35cePuCb3MbxDlYRPQ">TRD Pro Storm Chasers</option>
+	<option value="UC9Im8smbq_uvNrmeJrW7Xjg">Weather Tracker Plus</option>
+	<option value="UCQc7Ol2itgbnMXPjZmPdRRQ">Aaron Preslin (Cinci live cam)</option>
+	<option value="UCp2G_jHO53yj2NVjv8zbDmQ">Evan Fryberger</option>
+	<option value="UCJHAT3Uvv-g3I8H3GhHWV7w">Ryan Hall Y'all</option>
+	<option value="UCvBVK2ymNzPLRJrgip2GeQQ">Max Velocity</option>
+	<option value="UChxsy558HhpaqnB1Hk6tHkw">Mr. Dibble</option>
+	<option value="UCyATI09Wvf9k-I1MmNILjEQ">TRG Tornado</option>
+	<option value="UCjHx6rlvmIEK8TmLnHghWLw">NWW116</option>
 </select>
-<select id="selectRadar">
-	<option>radar</option>
+
+<select id="selectRadar" value="day" onchange="selectRadar();">
+
+        <option value="usa">Full United States</option>
+        <option value="bfl">CA - Bakersfield</option>
+        <option value="bgm">NY - Binghamton</option>
+        <option value="bis">ND - Bismarck</option>
+        <option value="bml">NH - Berlin</option>
+        <option value="bro">TX - Brownsville</option>
+        <option value="bwg">KY - Bowling Green</option>
+        <option value="cad">MI - Cadillac</option>
+        <option value="clt">NC - Charlotte</option>
+        <option value="csg">GA - Columbus</option>
+        <option value="day" selected>OH - Dayton</option>
+        <option value="den">CO - Denver</option>
+        <option value="dsm">IA - Des Moines</option>
+        <option value="eyw">FL - Key West</option>
+        <option value="fcx">VA - Roanoke</option>
+        <option value="hfd">CT - Hartford</option>
+        <option value="jef">MO - Jefferson City</option>
+        <option value="law">OK - Lawton</option>
+        <option value="lbf">NE - North Platte</option>
+        <option value="lit">AR - Little Rock</option>
+        <option value="lwt">MT - Lewistown</option>
+        <option value="msy">LA - New Orleans</option>
+        <option value="myl">ID - McCall</option>
+        <option value="pie">FL - Saint Petersburg</option>
+        <option value="pir">SD - Pierre</option>
+        <option value="prc">AZ - Prescott</option>
+        <option value="pvu">UT - Provo</option>
+        <option value="rdm">OR - Redmond</option>
+        <option value="riw">WY - Riverton</option>
+        <option value="rno">NV - Reno</option>
+        <option value="row">NM - Roswell</option>
+        <option value="sat">TX - San Antonio</option>
+        <option value="shd">VA - Staunton</option>
+        <option value="sln">KS - Salina</option>
+        <option value="spi">IL - Springfield</option>
+        <option value="stc">MN - Saint Cloud</option>
+        <option value="tiw">WA - Tacoma</option>
+        <option value="tvr">MS - Vicksburg</option>
 </select>
+
 </div>
 
 <br>
@@ -148,6 +198,21 @@ function changeMainImg(selectedValue)
 	}
 	else if (selectedValue == "days4-8") {
 		mainElementDiv.innerHTML = '<img id="mainImg" src="https://www.spc.noaa.gov/products/exper/day4-8/day48prob.gif">';
+	}
+}
+
+function selectVideo() {
+
+}
+
+function selectRadar() {
+	var selectedLocation = document.getElementById("selectRadar").value;
+	mainImg = document.getElementById("mainImg");
+	if (selectedLocation == "usa") {
+		mainImg.src = "https://s.w-x.co/staticmaps/wu/wxtype/none/usa/animate.png"
+	}
+	else {
+		mainImg.src = "https://s.w-x.co/staticmaps/wu/wxtype/county_loc/" + selectedLocation + "/animate.png"
 	}
 }
 
