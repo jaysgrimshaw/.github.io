@@ -49,13 +49,20 @@ body {
 	justify-content: center;
 	align-items: center;
 }
+
+#mainSelect {
+	width: 12ch;
+}
+
 /* make these two invisible at first, JS will show them later*/
 #selectYT {
 	display: none;
+	width: 9ch;
 }
 
 #selectRadar {
 	display: none;
+	width: 13ch;
 }
 
 iframe {
@@ -96,6 +103,7 @@ iframe {
 
 	<option selected>View more</option>
 	<option value="overview">SPC overview</option>
+	<option value="oldDay1">Yesterday's otlk valid until 12Z</button>
 	<option value="days4-8">Day4-8 outlook</option>
 	<option value="yt">YT streams</option>
 	<option value="radar">Local radar</option>
