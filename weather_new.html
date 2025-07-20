@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html>
 <head>
 <title>Weather Dashboard</title>
 <link rel="icon" type="image/x-icon" href="https://www.spc.noaa.gov/products/outlook/day1otlk.gif"> <!--the little icon next to the browser tab-->
@@ -12,28 +13,44 @@ body {
 	margin: 1px;
 }
 
+#outlook_img_row_wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
 
 #outlook_img_row {
 	display: flex; 
 	flex-direction: row;
 	flex-wrap: nowrap;
 	gap: 5px;
-	width: 100%; /*use auto or 100%?*/
+	width: 255px; /*use auto or 100% or 255px?*/
 }
 #outlook_img_row img {
 	/*this makes the images auto resize to fit the width*/
-	width:100%;
+	width:76px;
 }
 #outlook_img_row h5 {
 	text-align: center;
 	margin: 0;
 }
 
+#day4-8div {
+	display: none;
+}
+
+#mainElementDiv {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
 #mainImg {
-	/*margin: auto;*/
-	width: 225px;
-	/*display: block;*/
+	/*margin: auto;
+	display: block;*/
 	margin-top: 4px;
+	margin-bottom: 4px;
+	width: 225px;
 }
 
 #buttonWrapper > button {
@@ -42,6 +59,7 @@ body {
 	color: #FFFFFF;
 	border: 0;
 	margin: 0 1px 0 1px;
+	width: 238px;
 }
 
 #mainSelectWrapper {
@@ -49,13 +67,20 @@ body {
 	justify-content: center;
 	align-items: center;
 }
+
+#mainSelect {
+	width: 12ch;
+}
+
 /* make these two invisible at first, JS will show them later*/
 #selectYT {
 	display: none;
+	width: 9ch;
 }
 
 #selectRadar {
 	display: none;
+	width: 13ch;
 }
 
 iframe {
@@ -65,6 +90,58 @@ iframe {
 
 /*}*/ /*for the max-width 290px*/
 
+/*scaling it for regular smartphones*/
+@media (min-width: 320px) {
+
+#outlook_img_row {
+	width: 390px;
+}
+
+#outlook_img_row img {
+	width: 100;
+}
+
+#day4-8div {
+	display: block;
+}
+
+#mainImg {
+	width: 390px;
+}
+
+iframe {
+	width: 390px;
+}
+	
+}
+
+
+/*scaling it for 1080p displays:*/
+@media only screen and (min-width: 1000px) {
+
+#outlook_img_row {
+	width: 700px;
+}
+
+#outlook_img_row img {
+	width: 100;
+}
+
+#day4-8div {
+	display: block;
+}
+
+#mainImg {
+	width: 582px;
+}
+
+iframe {
+	width: 582px;
+}
+
+}
+
+
 </style>
 </head>
 <body>
@@ -72,18 +149,21 @@ iframe {
 <!--<h3 style="text-align: center; margin: 5px;">SPC Outlooks:</h3>-->
 
 <!--Header with the day1-3 outlooks-->	<!--maybe add the day4 if the screen is wide enough-->
+<div id="outlook_img_row_wrapper">
 <div id="outlook_img_row">
-<div><h5>Day 1</h5><a><img id="day1" onclick="selectMainOutlook(this.src);" src="https://www.spc.noaa.gov/products/outlook/day1otlk.gif"/></a></div>
-<div><h5>Day 2</h5><a><img id="day2" onclick="selectMainOutlook(this.src);" src="https://www.spc.noaa.gov/products/outlook/day2otlk.gif"/></a></div>
+<div><h5>Day 1</h5><a><img id="day1" onclick="selectMainOutlook(this.src, this.id);" src="https://www.spc.noaa.gov/products/outlook/day1otlk.gif"/></a></div>
+<div><h5>Day 2</h5><a><img id="day2" onclick="selectMainOutlook(this.src, this.id);" src="https://www.spc.noaa.gov/products/outlook/day2otlk.gif"/></a></div>
 <div><h5>Day 3</h5><a><img id="day3" onclick="selectMainOutlook(this.src);" src="https://www.spc.noaa.gov/products/outlook/day3otlk.gif"/></a></div>
+<div id="day4-8div"><h5>Day 4-8</h5><a><img id="day4-8" src="https://www.spc.noaa.gov/products/exper/day4-8/day48prob.gif"/></a></div>
 </div>	<!--not having the images in an <a> breaks the sizing, idk why-->
+</div>
 
 <div id="buttonWrapper" style="display: flex; justify-content: center; align-items: center;">
 
-<button onclick="changeMainImg(this.textContent);">Categorical</button>
-<button>Tornado</button>
-<button>Wind</button>
-<button>Hail</button>
+<button value="cat" onclick="changeProbabilities(this.value);">Categorical</button>
+<button value="torn" onclick="changeProbabilities(this.value);">Tornado</button>
+<button value="wind" onclick="changeProbabilities(this.value);">Wind</button>
+<button value="hail" onclick="changeProbabilities(this.value);">Hail</button>
 
 </div>
 
@@ -94,9 +174,14 @@ iframe {
 <div id="mainSelectWrapper">
 <select id="mainSelect" onchange="changeMainImg(this.value);">
 
+<<<<<<< HEAD
 	<option selected>View more</option>
 	<option value="oldDay1">Day1 valid until 8am EST</option>
+=======
+	<option value="viewmore" selected>View more</option>
+>>>>>>> 7b514d366b320a4f3f3200496f0afe81366a2566
 	<option value="overview">SPC overview</option>
+	<option value="oldDay1">*still needs done* Yesterday's otlk valid until 12Z</button>
 	<option value="days4-8">Day4-8 outlook</option>
 	<option value="yt">YT streams</option>
 	<option value="radar">Local radar</option>
@@ -163,7 +248,7 @@ iframe {
 
 <br>
 <br>
-*deployed from branch weather for testing
+<p style="display: flex; justify-content: center; align-items: center;">*deployed from branch weather for testing</p>
 
 </body>
 
@@ -171,11 +256,38 @@ iframe {
 
 var mainElementDiv = document.getElementById("mainElementDiv");
 
-function selectMainOutlook(selectedSrc) {
+function selectMainOutlook(selectedSrc, selectedID) {
 
 	console.log("function selectMainOutlook");
-	mainElementDiv.innerHTML = '<img id="mainImg" src="' + selectedSrc + '">';
+	mainElementDiv.innerHTML = '<img id="mainImg" alt="' + selectedID + '" src="' + selectedSrc + '">';
+	console.log(document.getElementById("mainImg").alt);
+	document.getElementById("mainSelect").value="viewmore";
+	document.getElementById("selectYT").style.display="none";
+	document.getElementById("selectRadar").style.display="none";
+}
 
+function changeProbabilities(selection) {
+	console.log("changeProbabilities: selected " + selection);
+	day1 = document.getElementById("day1");
+	day2 = document.getElementById("day2");
+	//change the day1 and day2 outlooks at the top of the screen
+	if (selection == "cat") {
+		day1.src="https://www.spc.noaa.gov/products/outlook/day1otlk.gif";
+		day2.src="https://www.spc.noaa.gov/products/outlook/day2otlk.gif";	
+
+	}
+
+	else {
+		day1.src="https://www.spc.noaa.gov/products/outlook/day1probotlk_" + selection + ".gif";
+		day2.src="https://www.spc.noaa.gov/products/outlook/day2probotlk_" + selection + ".gif";
+	}
+
+	//if the main image is one of the outlooks, change that
+	otlk = document.getElementById("mainImg").alt;
+	if (["day1", "day2"].includes(otlk)) {
+		console.log("includes");
+		mainImg.src = document.getElementById(otlk).src;
+	}
 }
 
 function changeMainImg(selectedValue) 
