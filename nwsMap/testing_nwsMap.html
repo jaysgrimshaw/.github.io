@@ -1,11 +1,143 @@
 <!DOCTYPE html>
 <html>
 <head>
+
+<link href="./weatherstyle.css" rel="stylesheet" type="text/css">
+<link href="./template.css" rel="stylesheet" type="text/css">
+
 </head>
 
 <body>
 
-<div id="wwamap">
+<div class="five-sixth-first" id="pagebody">    
+                        
+                        <div class="div-full">
+    <div class="subMenuNav">
+        <ul id="subMenuNav">
+                            <li>
+                    <div class="subMenuNavList section-link">
+                        <a href="/alerts">ACTIVE ALERTS</a>
+                    </div>
+                                    </li>
+                            <li>
+                    <div class="subMenuNavList section-link">
+                        <a href="/forecastmaps/">FORECAST MAPS</a>
+                    </div>
+                                    </li>
+                            <li>
+                    <div class="subMenuNavList section-link">
+                        <a href="https://radar.weather.gov/region/conus/standard">RADAR</a>
+                    </div>
+                                            <div class="sub">
+                            <ul>
+                                                                    <li>
+                                        <a href="https://radar.weather.gov/region/conus-large/standard"> Standard Radar (Low Bandwidth)</a>
+                                    </li>
+                                                                    <li>
+                                        <a href="https://radar.weather.gov"> Enhanced Radar</a>
+                                    </li>
+                                                            </ul>
+                        </div>
+                                    </li>
+                            <li>
+                    <div class="subMenuNavList section-link">
+                        <a href="https://water.noaa.gov/">RIVERS, LAKES, RAINFALL</a>
+                    </div>
+                                    </li>
+                            <li>
+                    <div class="subMenuNavList section-link">
+                        <a href="https://airquality.weather.gov">AIR QUALITY</a>
+                    </div>
+                                    </li>
+                            <li>
+                    <div class="subMenuNavList section-link">
+                        <a href="/satellite">SATELLITE</a>
+                    </div>
+                                    </li>
+                            <li>
+                    <div class="subMenuNavList section-link">
+                        <a href="/current">CURRENT</a>
+                    </div>
+                                    </li>
+                    </ul>
+    </div>
+</div>
+
+                        <div class="div-full cms-content" id="front_page_content">
+    <p><script>
+$( document ).ready(function() {
+ 
+$('.feature').hide();
+$('.one-third-first').show();
+$('.one-third-first img').css({
+  'width': '935px'
+});
+$('.one-third-first img').css('border', '0px');
+
+
+/* vote.gov */
+//$( ".div-half" ).eq(0).append( '<br><a href="https://vote.gov">Vote.gov</a>' );
+     
+
+/* Addition of button on top/left hand part of weather.gov is BELOW */
+
+// WRN
+ //$( "#sidebar.one-sixth-first" ).prepend( "<div class='myfcst-hr'><a href='/safety/'><img style='width:140px;' src='/images/nws/weather_safety_thumbnail.png'/></a><br/>&nbsp;</div>" );
+
+
+/* Addition of button on top/left hand part of weather.gov is ABOVE */
+
+
+/* Additional headline code is BELOW */
+
+// Web page maintenance...
+//$( "div.five-sixth-last" ).append('**<em>Our web pages are undergoing maintenance, which may result in the display of old data.  This message will be removed once maintenance is complete.</em>');
+
+
+
+const divs = document.querySelectorAll('.full-width-first.communication-links .one-sixth-first.divs');
+
+// If there are at least 3, insert after the third
+if (divs.length >= 3) {
+    divs[2].insertAdjacentHTML('afterend', `
+        <div class="one-sixth-first divs">
+            <div class="myforecast-current">
+                <a style="text-decoration:none;" href="https://bsky.app/profile/nws.noaa.gov" target="_blank">
+                    <img src="/images/nws/bluesky.png" width="16" alt="Follow us on Bluesky" height="16">
+                      Follow us on Bluesky
+                </a>
+            </div>
+        </div>
+    `);
+}
+
+if (divs.length >= 3) {
+    divs[2].insertAdjacentHTML('afterend', `
+        <div class="one-sixth-first divs">
+            <div class="myforecast-current">
+                <a style="text-decoration:none;" href="https://instagram.com/nws" target="_blank">
+                    <img src="/images/nws/ig.png" width="16" alt="Follow us on Instagram" height="16">
+                      Follow us on Instagram
+                </a>
+            </div>
+        </div>
+    `);
+}
+
+
+});
+</script>
+<script src="https://www.weather.gov/source/nws/govshutdown.js" defer=""></script></p>
+
+</div>
+                        <div class="div-full">
+    <link rel="stylesheet" href="./wwamap.css" type="text/css">
+    <style type="text/css">
+        #wwa li {
+            margin: 0.5em 0.5em 0.5em 0.1em;
+        }
+    </style>
+    <div id="wwamap">
         <div class="USMap">
             <img id="us" src="https://www.weather.gov/wwamap/png/US.png" usemap="#US_large_imagemap_800_500">
             <img id="alaska" src="https://www.weather.gov/wwamap/png/ak.png" usemap="#alaska_imagemap_130_115">
@@ -332,6 +464,10 @@
                                         <a href="https://forecast.weather.gov/wwamap/wwatxtget.php?cwa=usa&amp;wwa=Gale%20Warning">Gale Warning</a>
                                     </li>
                                                                     <li>
+                                        <div style="background-color:#0000ff" class="wwabox">&nbsp;</div>
+                                        <a href="https://forecast.weather.gov/wwamap/wwatxtget.php?cwa=usa&amp;wwa=Extreme%20Cold%20Warning">Extreme Cold Warning</a>
+                                    </li>
+                                                                    <li>
                                         <div style="background-color:#7b68ee" class="wwabox">&nbsp;</div>
                                         <a href="https://forecast.weather.gov/wwamap/wwatxtget.php?cwa=usa&amp;wwa=Winter%20Weather%20Advisory">Winter Weather Advisory</a>
                                     </li>
@@ -355,14 +491,14 @@
                                         <div style="background-color:#d8bfd8" class="wwabox">&nbsp;</div>
                                         <a href="https://forecast.weather.gov/wwamap/wwatxtget.php?cwa=usa&amp;wwa=Small%20Craft%20Advisory">Small Craft Advisory</a>
                                     </li>
-                                                                    <li>
-                                        <div style="background-color:#d8bfd8" class="wwabox">&nbsp;</div>
-                                        <a href="https://forecast.weather.gov/wwamap/wwatxtget.php?cwa=usa&amp;wwa=Brisk%20Wind%20Advisory">Brisk Wind Advisory</a>
-                                    </li>
                                                             </ul>
                         </div>
                                             <div id="wwacenter_r">
                             <ul>
+                                                                    <li>
+                                        <div style="background-color:#d8bfd8" class="wwabox">&nbsp;</div>
+                                        <a href="https://forecast.weather.gov/wwamap/wwatxtget.php?cwa=usa&amp;wwa=Brisk%20Wind%20Advisory">Brisk Wind Advisory</a>
+                                    </li>
                                                                     <li>
                                         <div style="background-color:#d2b48c" class="wwabox">&nbsp;</div>
                                         <a href="https://forecast.weather.gov/wwamap/wwatxtget.php?cwa=usa&amp;wwa=Lake%20Wind%20Advisory">Lake Wind Advisory</a>
@@ -391,14 +527,14 @@
                                         <div style="background-color:#2e8b57" class="wwabox">&nbsp;</div>
                                         <a href="https://forecast.weather.gov/wwamap/wwatxtget.php?cwa=usa&amp;wwa=Flood%20Watch">Flood Watch</a>
                                     </li>
-                                                                    <li>
-                                        <div style="background-color:#b8860b" class="wwabox">&nbsp;</div>
-                                        <a href="https://forecast.weather.gov/wwamap/wwatxtget.php?cwa=usa&amp;wwa=High%20Wind%20Watch">High Wind Watch</a>
-                                    </li>
                                                             </ul>
                         </div>
                                             <div id="wwaright">
                             <ul>
+                                                                    <li>
+                                        <div style="background-color:#b8860b" class="wwabox">&nbsp;</div>
+                                        <a href="https://forecast.weather.gov/wwamap/wwatxtget.php?cwa=usa&amp;wwa=High%20Wind%20Watch">High Wind Watch</a>
+                                    </li>
                                                                     <li>
                                         <div style="background-color:#00ffff" class="wwabox">&nbsp;</div>
                                         <a href="https://forecast.weather.gov/wwamap/wwatxtget.php?cwa=usa&amp;wwa=Freeze%20Watch">Freeze Watch</a>
@@ -425,6 +561,16 @@
             </div>
         </div>
     </div>
+</div>
+<div style="clear:both;"></div>
+
+                        <div class="div-full">
+<div class="cms-content">
+</div>
+</div>
+<div style="clear:both"></div>
+                        
+                    </div>
 
 
 </body>
