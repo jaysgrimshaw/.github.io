@@ -154,7 +154,7 @@ iframe {
 <div><h5>Day 1</h5><a><img id="day1" onclick="selectMainOutlook(this.src, this.id);" src="https://www.spc.noaa.gov/products/outlook/day1otlk.gif"/></a></div>
 <div><h5>Day 2</h5><a><img id="day2" onclick="selectMainOutlook(this.src, this.id);" src="https://www.spc.noaa.gov/products/outlook/day2otlk.gif"/></a></div>
 <div><h5>Day 3</h5><a><img id="day3" onclick="selectMainOutlook(this.src);" src="https://www.spc.noaa.gov/products/outlook/day3otlk.gif"/></a></div>
-<div id="day4-8div"><h5>Day 4-8</h5><a><img id="day4-8" src="https://www.spc.noaa.gov/products/exper/day4-8/day48prob.gif"/></a></div>
+<div id="day4-8div"><h5>Day 4-8</h5><a><img id="day4-8" onclick="selectMainOutlook(this.src, this.id);" src="https://www.spc.noaa.gov/products/exper/day4-8/day48prob.gif"/></a></div>
 </div>	<!--not having the images in an <a> breaks the sizing, idk why-->
 </div>
 
@@ -168,7 +168,7 @@ iframe {
 </div>
 
 <div id="mainElementDiv">
-<img id="mainImg" src="https://www.spc.noaa.gov/products/activity_loop.gif">
+<img id="mainImg" alt="overview" src="https://www.spc.noaa.gov/products/activity_loop.gif">
 </div>
 
 <div id="mainSelectWrapper">
@@ -248,17 +248,22 @@ iframe {
 </body>
 
 <script>
-
+//comment -Quintin, 2025
 var mainElementDiv = document.getElementById("mainElementDiv");
 
 function selectMainOutlook(selectedSrc, selectedID) {
-
-	console.log("function selectMainOutlook");
-	mainElementDiv.innerHTML = '<img id="mainImg" alt="' + selectedID + '" src="' + selectedSrc + '">';
-	console.log(document.getElementById("mainImg").alt);
-	document.getElementById("mainSelect").value="viewmore";
-	document.getElementById("selectYT").style.display="none";
-	document.getElementById("selectRadar").style.display="none";
+	console.log(selectedID);
+	if (selectedID == "day4-8") {
+		mainElementDiv.innerHTML = '<img id="mainImg" alt="day4-8" src="https://www.spc.noaa.gov/products/exper/day4-8/day48prob.gif">';
+	}
+	else {
+		console.log("function selectMainOutlook");
+		mainElementDiv.innerHTML = '<img id="mainImg" alt="' + selectedID + '" src="' + selectedSrc + '">';
+		console.log(document.getElementById("mainImg").alt);
+		document.getElementById("mainSelect").value="viewmore";
+		document.getElementById("selectYT").style.display="none";
+		document.getElementById("selectRadar").style.display="none";
+	}	
 }
 
 function changeProbabilities(selection) {
@@ -283,12 +288,22 @@ function changeProbabilities(selection) {
 		console.log("includes");
 		mainImg.src = document.getElementById(otlk).src;
 	}
+	//or if it's the overview, change that to the day 1
+	else if (otlk == "overview") {
+		mainImg.alt = "day1";
+		mainImg.src = document.getElementById("day1").src;
+		mainSelect.value = "viewmore";
+	}
 }
 
 function changeMainImg(selectedValue) 
 
 {
 	console.log(selectedValue);
+
+	//set the top row images back to default
+	day1.src="https://www.spc.noaa.gov/products/outlook/day1otlk.gif";
+	day2.src="https://www.spc.noaa.gov/products/outlook/day2otlk.gif";
 
 	//check YT and radar first with their own else bc if they aren't true i need to hide the select for them
 	if (selectedValue == "yt") {
@@ -308,7 +323,9 @@ function changeMainImg(selectedValue)
 	}
 
 	if (selectedValue == "overview") {
-		mainElementDiv.innerHTML = '<img id="mainImg" src="https://www.spc.noaa.gov/products/activity_loop.gif">';
+		mainElementDiv.innerHTML = '<img id="mainImg" alt="overview" src="https://www.spc.noaa.gov/products/activity_loop.gif">';
+		document.getElementById("day1").src = "https://www.spc.noaa.gov/products/outlook/day1otlk.gif";
+		document.getElementById("day2").src = "https://www.spc.noaa.gov/products/outlook/day2otlk.gif";
 	}
 	else if (selectedValue == "days4-8") {
 		mainElementDiv.innerHTML = '<img id="mainImg" src="https://www.spc.noaa.gov/products/exper/day4-8/day48prob.gif">';
