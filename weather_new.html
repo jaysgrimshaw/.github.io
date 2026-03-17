@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>Weather Dashboard</title>
-<link rel="icon" type="image/x-icon" href="https://www.spc.noaa.gov/products/outlook/day1otlk.gif"> <!--the little icon next to the browser tab-->
+<link rel="icon" type="image/x-icon" href="https://www.spc.noaa.gov/products/outlook/day1otlk.png"> <!--the little icon next to the browser tab-->
 <style>
 
 /*estimating the max width 290px for flip phones*/
@@ -151,9 +151,9 @@ iframe {
 <!--Header with the day1-3 outlooks-->	<!--maybe add the day4 if the screen is wide enough-->
 <div id="outlook_img_row_wrapper">
 <div id="outlook_img_row">
-<div><h5>Day 1</h5><a><img id="day1" onclick="selectMainOutlook(this.src, this.id);" src="https://www.spc.noaa.gov/products/outlook/day1otlk.gif"/></a></div>
-<div><h5>Day 2</h5><a><img id="day2" onclick="selectMainOutlook(this.src, this.id);" src="https://www.spc.noaa.gov/products/outlook/day2otlk.gif"/></a></div>
-<div><h5>Day 3</h5><a><img id="day3" onclick="selectMainOutlook(this.src);" src="https://www.spc.noaa.gov/products/outlook/day3otlk.gif"/></a></div>
+<div><h5>Day 1</h5><a><img id="day1" onclick="selectMainOutlook(this.src, this.id);" src="https://www.spc.noaa.gov/products/outlook/day1otlk.png"/></a></div>
+<div><h5>Day 2</h5><a><img id="day2" onclick="selectMainOutlook(this.src, this.id);" src="https://www.spc.noaa.gov/products/outlook/day2otlk.png"/></a></div>
+<div><h5>Day 3</h5><a><img id="day3" onclick="selectMainOutlook(this.src);" src="https://www.spc.noaa.gov/products/outlook/day3otlk.png"/></a></div>
 <div id="day4-8div"><h5>Day 4-8</h5><a><img id="day4-8" onclick="selectMainOutlook(this.src, this.id);" src="https://www.spc.noaa.gov/products/exper/day4-8/day48prob.gif"/></a></div>
 </div>	<!--not having the images in an <a> breaks the sizing, idk why-->
 </div>
@@ -272,14 +272,14 @@ function changeProbabilities(selection) {
 	day2 = document.getElementById("day2");
 	//change the day1 and day2 outlooks at the top of the screen
 	if (selection == "cat") {
-		day1.src="https://www.spc.noaa.gov/products/outlook/day1otlk.gif";
-		day2.src="https://www.spc.noaa.gov/products/outlook/day2otlk.gif";	
+		day1.src="https://www.spc.noaa.gov/products/outlook/day1otlk.png";
+		day2.src="https://www.spc.noaa.gov/products/outlook/day2otlk.png";	
 
 	}
 
 	else {
-		day1.src="https://www.spc.noaa.gov/products/outlook/day1probotlk_" + selection + ".gif";
-		day2.src="https://www.spc.noaa.gov/products/outlook/day2probotlk_" + selection + ".gif";
+		day1.src="https://www.spc.noaa.gov/products/outlook/day1probotlk_" + selection + ".png";
+		day2.src="https://www.spc.noaa.gov/products/outlook/day2probotlk_" + selection + ".png";
 	}
 
 	//if the main image is one of the outlooks, change that
@@ -302,8 +302,8 @@ function changeMainImg(selectedValue)
 	console.log(selectedValue);
 
 	//set the top row images back to default
-	day1.src="https://www.spc.noaa.gov/products/outlook/day1otlk.gif";
-	day2.src="https://www.spc.noaa.gov/products/outlook/day2otlk.gif";
+	day1.src="https://www.spc.noaa.gov/products/outlook/day1otlk.png";
+	day2.src="https://www.spc.noaa.gov/products/outlook/day2otlk.png";
 
 	//check YT and radar first with their own else bc if they aren't true i need to hide the select for them
 	if (selectedValue == "yt") {
@@ -324,8 +324,8 @@ function changeMainImg(selectedValue)
 
 	if (selectedValue == "overview") {
 		mainElementDiv.innerHTML = '<img id="mainImg" alt="overview" src="https://www.spc.noaa.gov/products/activity_loop.gif">';
-		document.getElementById("day1").src = "https://www.spc.noaa.gov/products/outlook/day1otlk.gif";
-		document.getElementById("day2").src = "https://www.spc.noaa.gov/products/outlook/day2otlk.gif";
+		document.getElementById("day1").src = "https://www.spc.noaa.gov/products/outlook/day1otlk.png";
+		document.getElementById("day2").src = "https://www.spc.noaa.gov/products/outlook/day2otlk.png";
 	}
 	else if (selectedValue == "days4-8") {
 		mainElementDiv.innerHTML = '<img id="mainImg" src="https://www.spc.noaa.gov/products/exper/day4-8/day48prob.gif">';
